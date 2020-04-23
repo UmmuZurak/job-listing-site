@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Spartan:500,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 1em;
+  font-family: 'Spartan', sans-serif;
+}
+
+:root {
+  --desaturated-dark-cyan: hsl(180, 29%, 50%);
+  --light-grayish-cyanb: hsl(180, 52%, 96%);
+  --light-grayish-cyan: hsl(180, 31%, 95%);
+  --dark-grayish-cyan: hsl(180, 8%, 52%);
+  --very-dark-grayish-cyan: hsl(180, 14%, 20%);
+  --box-shadow: 5px 5px 10px hsla(180, 29%, 50%, 0.233);
+}
+
+.header-container {
+  width: 100%;
+  padding: 4rem;
+  background: var(--desaturated-dark-cyan)
+    url('../images/bg-header-desktop.svg');
+}
+
+.main-container {
+  width: 100%;
+  background: var(--light-grayish-cyanb);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-container {
+  width: 80%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  margin-top: -2rem;
+  border-radius: 0.3rem;
+  box-shadow: var(--box-shadow);
+  display: none;
+}
+
+.filter-content {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-item-container {
+  display: flex;
+}
+
+.filter-item {
+  margin-right: 1rem;
+}
+
+.filter-item span {
+  color: var(--desaturated-dark-cyan);
+  background: var(--light-grayish-cyan);
+  padding: 0.58rem 0.7rem 0.7rem 0.7rem;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-weight: 500;
+}
+
+.filter-item button {
+  border: none;
+  background: var(--desaturated-dark-cyan);
+  padding: 0.75rem;
+  color: white;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-family: 'Spartan', sans-serif;
+  font-weight: 500;
+}
+
+.filter-item button:hover {
+  background: var(--very-dark-grayish-cyan);
+  cursor: pointer;
+}
+
+.clear-item button {
+  background: none;
+  color: var(--desaturated-dark-cyan);
+  border: none;
+  font-family: 'Spartan', sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.clear-item button:hover {
+  border-bottom: 1px solid var(--desaturated-dark-cyan);
+  cursor: pointer;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.main-content-item {
+  width: 80%;
+  background: white;
+  border-radius: 0.3rem;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.featured {
+  border-left: 4px solid var(--desaturated-dark-cyan);
+}
+
+.main-content-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.main-content-item-role {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-content-item-text {
+  display: flex;
+}
+
+.content-text {
+  margin-left: 1rem;
+}
+
+.headlines {
+  display: flex;
+}
+
+.headlines > h4 {
+  margin-right: 0.5rem;
+}
+
+.headline-name {
+  color: var(--desaturated-dark-cyan);
+}
+
+.headline-new {
+  background: var(--desaturated-dark-cyan);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.headline-featured {
+  background: var(--very-dark-grayish-cyan);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.role {
+  margin: 0.4rem 0;
+}
+
+.role h3 {
+  color: var(--very-dark-grayish-cyan);
+}
+
+.role h3:hover {
+  color: var(--desaturated-dark-cyan);
+}
+.details {
+  display: flex;
+  color: var(--desaturated-dark-cyan);
+}
+
+.details span {
+  margin-top: -5px;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.main-content-item-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tags {
+  background: var(--light-grayish-cyan);
+  color: var(--desaturated-dark-cyan);
+  border: none;
+  padding: 0.6rem;
+  margin-left: 0.5rem;
+  font-family: 'Spartan';
+  font-weight: 500;
+  border-radius: 2px;
+  font-size: 1em;
+}
+
+.tags:hover {
+  cursor: pointer;
+  color: white;
+  background: var(--desaturated-dark-cyan);
+}
