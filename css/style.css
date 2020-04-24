@@ -18,7 +18,7 @@ body {
   --light-grayish-cyan: hsl(180, 31%, 95%);
   --dark-grayish-cyan: hsl(180, 8%, 52%);
   --very-dark-grayish-cyan: hsl(180, 14%, 20%);
-  --box-shadow: 5px 5px 10px hsla(180, 29%, 50%, 0.233);
+  --box-shadow: 5px 5px 10px hsla(180, 29%, 50%, 0.377);
 }
 
 .header-container {
@@ -37,11 +37,8 @@ body {
 }
 
 .filter-container {
-  width: 80%;
+  width: 85%;
   background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 0.8rem;
   margin-top: -2rem;
   border-radius: 0.3rem;
@@ -54,6 +51,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 }
 
 .filter-item-container {
@@ -96,6 +94,7 @@ body {
   font-family: 'Spartan', sans-serif;
   font-weight: 500;
   font-size: 1em;
+  outline: none;
 }
 
 .clear-item button:hover {
@@ -113,7 +112,7 @@ body {
 }
 
 .main-content-item {
-  width: 80%;
+  width: 85%;
   background: white;
   border-radius: 0.3rem;
   box-shadow: var(--box-shadow);
@@ -186,6 +185,7 @@ body {
 
 .role h3:hover {
   color: var(--desaturated-dark-cyan);
+  cursor: pointer;
 }
 .details {
   display: flex;
@@ -214,6 +214,7 @@ body {
   font-weight: 500;
   border-radius: 2px;
   font-size: 1em;
+  outline: none;
 }
 
 .tags:hover {

@@ -1,4 +1,6 @@
 let mainContainer = document.getElementById('mainContainer');
+let filterContainer = document.getElementById('filterContainer');
+let filterContent = document.getElementById('filterContent');
 
 async function getData() {
   try {
@@ -7,8 +9,7 @@ async function getData() {
     const data = await res.json();
 
     displayRoles(data);
-    displayNew(data);
-    console.table(data);
+    filterRoles();
   } catch (error) {
     console.log(error);
   }
@@ -17,7 +18,10 @@ async function getData() {
 getData();
 
 function displayRoles(result) {
-  mainContainer.innerHTML = '';
+  let contentItems = document.getElementsByClassName('main-content-item');
+  let newHeadlines = document.getElementsByClassName('headlines');
+  let tagsContainer = document.getElementsByClassName('main-content-item-tags');
+  //mainContainer.innerHTML = '';
 
   for (let i = 0; i < result.length; i++) {
     mainContainer.innerHTML += `
@@ -48,20 +52,80 @@ function displayRoles(result) {
           </div>
         </div>
         `;
-  }
-}
 
-function displayNew(response) {
-  let newHeadlines = document.getElementsByClassName('headlines');
-  console.log(newHeadlines);
+    if (result[i].new === true) {
+      newHeadlines[i].innerHTML += `
+      <h4 class="headline-new">NEW!</h4>
+      `;
+    }
 
-  for (let j = 0; j < newHeadlines.length; j++) {
-    for (let k = 0; k < response.length; k++) {
-      if (response[k].new === true) {
-        newHeadlines[j] += `
-            <h4 class="headline-new">NEW!</h4>
-            `;
+    if (result[i].featured === true) {
+      newHeadlines[i].innerHTML += `
+      <h4 class="headline-featured">FEATURED</h4>
+      `;
+
+      contentItems[i].classList.add('featured');
+    }
+
+    if (result[i].hasOwnProperty('languages')) {
+      let languages = result[i].languages;
+      for (let j = 0; j < languages.length; j++) {
+        tagsContainer[i].innerHTML += `
+        <button class="tags">${languages[j]}</button>
+        `;
+      }
+    }
+
+    if (result[i].hasOwnProperty('tools')) {
+      let tools = result[i].tools;
+      for (let k = 0; k < tools.length; k++) {
+        tagsContainer[i].innerHTML += `
+        <button class="tags">${tools[k]}</button>
+        `;
       }
     }
   }
+}
+
+function filterRoles() {
+  let tagBtns = document.getElementsByClassName('tags');
+  let filteredRoles = mainContainer.getElementsByClassName('main-content-item');
+
+  for (let m = 0; m < tagBtns.length; m++) {
+    tagBtns[m].addEventListener('click', function () {
+      console.log('clicked');
+      displayFilterContainer(tagBtns[m]);
+      removeFilterItem();
+      clearFilterContainer();
+    });
+  }
+}
+
+function displayFilterContainer(tag) {
+  filterContainer.style.display = 'block';
+  filterContent.innerHTML += `
+        <div class="filter-item">
+          <span>${tag.innerHTML}</span><button class="filter-btn">X</button>
+        </div>
+      `;
+}
+
+function removeFilterItem() {
+  let filterBtns = document.getElementsByClassName('filter-btn');
+  for (let n = 0; n < filterBtns.length; n++) {
+    filterBtns[n].addEventListener('click', function () {
+      filterBtns[n].parentElement.remove();
+      // if (filterContent.innerHTML === '') {
+      //   filterContainer.style.display = 'none';
+      // }
+    });
+  }
+}
+
+function clearFilterContainer() {
+  let clear = document.getElementById('clear');
+  clear.addEventListener('click', function () {
+    filterContent.innerHTML = '';
+    filterContainer.style.display = 'none';
+  });
 }
