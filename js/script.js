@@ -29,7 +29,7 @@ async function getData() {
     console.table(data);
     //console.log(data);
     displayRoles(data);
-    // filterRoles(data, tags);
+    filterRoles(data, tags);
   } catch (error) {
     console.log(error);
   }
