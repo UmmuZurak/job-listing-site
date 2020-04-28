@@ -49,6 +49,7 @@ body {
 .filter-content {
   width: 95%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
@@ -56,6 +57,7 @@ body {
 
 .filter-item-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .filter-item {
@@ -134,6 +136,7 @@ body {
 .main-content-item-role {
   width: 95%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -221,4 +224,33 @@ body {
   cursor: pointer;
   color: white;
   background: var(--desaturated-dark-cyan);
+}
+
+/* responsiveness */
+@media (max-width: 600px) {
+}
+@media (min-width: 990px) and (max-width: 1199px) {
+  .filter-container {
+    width: 95%;
+  }
+
+  .filter-content {
+    width: 100%;
+  }
+
+  .main-content-item {
+    width: 95%;
+  }
+
+  .main-content-item-role {
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .filter-container {
+    max-width: 1200px;
+  }
+  .main-content-item {
+    max-width: 1200px;
+  }
 }

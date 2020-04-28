@@ -2,14 +2,34 @@ let mainContainer = document.getElementById('mainContainer');
 let filterContainer = document.getElementById('filterContainer');
 let filterContent = document.getElementById('filterContent');
 
+let tags = [
+  {
+    slug: 'role',
+    text: ['Frontend', 'Fullstack', 'Backend'],
+  },
+  {
+    slug: 'languages',
+    text: ['HTML', 'CSS', 'JavaScript', 'Python'],
+  },
+  {
+    slug: 'level',
+    text: ['Senior', 'Midweight', 'Junior'],
+  },
+  {
+    slug: 'tools',
+    text: ['React', 'Sass', 'Ruby', 'RoR', 'Vue', 'Django'],
+  },
+];
+
 async function getData() {
   try {
     const res = await fetch('data.json');
 
     const data = await res.json();
-
+    console.table(data);
+    //console.log(data);
     displayRoles(data);
-    filterRoles();
+    // filterRoles(data, tags);
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +41,6 @@ function displayRoles(result) {
   let contentItems = document.getElementsByClassName('main-content-item');
   let newHeadlines = document.getElementsByClassName('headlines');
   let tagsContainer = document.getElementsByClassName('main-content-item-tags');
-  //mainContainer.innerHTML = '';
 
   for (let i = 0; i < result.length; i++) {
     mainContainer.innerHTML += `
@@ -87,19 +106,17 @@ function displayRoles(result) {
   }
 }
 
-function filterRoles() {
-  let tagBtns = document.getElementsByClassName('tags');
-  let filteredRoles = mainContainer.getElementsByClassName('main-content-item');
+// function filterBtns() {
+//   let tagBtns = document.getElementsByClassName('tags');
 
-  for (let m = 0; m < tagBtns.length; m++) {
-    tagBtns[m].addEventListener('click', function () {
-      console.log('clicked');
-      displayFilterContainer(tagBtns[m]);
-      removeFilterItem();
-      clearFilterContainer();
-    });
-  }
-}
+//   for (let m = 0; m < tagBtns.length; m++) {
+//     tagBtns[m].addEventListener('click', function () {
+//       displayFilterContainer(tagBtns[m]);
+//       removeFilterItem();
+//       clearFilterContainer();
+//     });
+//   }
+// }
 
 function displayFilterContainer(tag) {
   filterContainer.style.display = 'block';
@@ -115,9 +132,6 @@ function removeFilterItem() {
   for (let n = 0; n < filterBtns.length; n++) {
     filterBtns[n].addEventListener('click', function () {
       filterBtns[n].parentElement.remove();
-      // if (filterContent.innerHTML === '') {
-      //   filterContainer.style.display = 'none';
-      // }
     });
   }
 }
@@ -125,7 +139,67 @@ function removeFilterItem() {
 function clearFilterContainer() {
   let clear = document.getElementById('clear');
   clear.addEventListener('click', function () {
-    filterContent.innerHTML = '';
     filterContainer.style.display = 'none';
+    filterContent.innerHTML = '';
   });
 }
+
+function filterRoles(data, tags) {
+  let tagBtns = document.getElementsByClassName('tags');
+
+  for (let m = 0; m < tagBtns.length; m++) {
+    tagBtns[m].addEventListener('click', function () {
+      displayFilterContainer(tagBtns[m]);
+      removeFilterItem();
+      clearFilterContainer();
+      filter(data, tags, tagBtns[m]);
+    });
+  }
+}
+
+function filter(data, tags, tagBtn) {
+  const result = [];
+  for (let i = 0; i < tags.length; i++) {
+    let word = tagBtn.innerHTML;
+    if (tags[i].text.includes(word)) {
+      for (let j = 0; j < data.length; j++) {
+        if (data[j][tags[i].slug]) {
+          if (Array.isArray(data[j][tags[i].slug])) {
+            if (data[j][tags[i].slug].includes(word)) {
+              result.push(data[j]);
+              mainContainer.innerHTML = '';
+              displayRoles(result);
+            }
+          } else {
+            if (data[j][tags[i].slug] === word) {
+              result.push(data[j]);
+              mainContainer.innerHTML = '';
+              displayRoles(result);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// function filter(data, tags) {
+//   const result = [];
+//   for (let i = 0; i < tags.length; i++) {
+//     for (let j = 0; j < data.length; j++) {
+//       if (data[j][tags[i].slug]) {
+//         if (Array.isArray(data[j][tags[i].slug])) {
+//           if (data[j][tags[i].slug].includes(tags[i].text)) {
+//             result.push(data[j]);
+//           }
+//         } else {
+//           if (data[j][tags[i].slug] == tags[i].text) {
+//             result.push(data[j]);
+//           }
+//         }
+//       }
+//     }
+//   }
+//   mainContainer.innerHTML = '';
+//   displayRoles(result);
+// }
