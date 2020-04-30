@@ -10,6 +10,7 @@ html,
 body {
   font-size: 1em;
   font-family: 'Spartan', sans-serif;
+  background: var(--light-grayish-cyanb);
 }
 
 :root {
